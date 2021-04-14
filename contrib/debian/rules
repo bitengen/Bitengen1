@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+# -*- mode: makefile; coding: utf-8 -*-
+
+#DEB_MAKE_CHECK_TARGET = test_bitcoin
+#build/bitcoind::
+#	$(if $(filter nocheck,$(DEB_BUILD_OPTIONS)),,src/test_bitcoin)
+
+DEB_INSTALL_EXAMPLES_bitengend += debian/examples/*
+DEB_INSTALL_MANPAGES_bitengend += debian/manpages/*
+
+%:
+	dh --with bash-completion $@
+
+override_dh_auto_build:
+	cd src; $(MAKE) -f makefile.unix bitengend
+	$(MAKE)
+
+override_dh_auto_clean:
+	if [ -f Makefile ]; then $(MAKE) clean; else rm -rf build/; rm -f bitengen-qt; fi
+	cd src; $(MAKE) -f makefile.unix clean
+
+override_dh_auto_configure:
+	qmake bitengen-qt.pro USE_QRCODE=1
+
+override_dh_auto_test:
+	cd src; $(MAKE) -f makefile.unix test_bitengen
+	src/test_bitengen
+
+# Ensure wrapper is set executable
+binary-post-install/bitengend:
+	chmod +x $(cdbs_curdestdir)usr/bin/bitengend
+binary-post-install/bitengen-qt:
+	chmod +x $(cdbs_curdestdir)usr/bin/bitengen-qt

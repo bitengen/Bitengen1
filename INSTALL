@@ -1,0 +1,9 @@
+Building Bitengen
+
+See doc/readme-qt.rst for instructions on building Bitengen QT,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of Bitengen.
+
+See doc/build-*.txt for instructions on building bitengend,
+the intended-for-services, no-graphical-interface, reference
+implementation of Bitengen.

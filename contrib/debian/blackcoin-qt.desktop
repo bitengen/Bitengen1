@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Bitengen
+Comment=Bitengen P2P Cryptocurrency
+Comment[fr]=Bitengen, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Bitengen, eşten eşe kriptografik sanal para birimi
+Exec=/usr/bin/bitengen-qt
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmaps/bitcoin80.xpm
+MimeType=x-scheme-handler/bitengen;
+Categories=Office;
